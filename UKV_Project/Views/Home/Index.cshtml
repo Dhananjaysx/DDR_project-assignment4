@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model IEnumerable<UKV_Project.Models.Datum>
+
+<div class ="main">
+<h1>Park Events Project</h1>
+<p2>The application is supposed to display ongoing events in US parks.</p2>
+</div>
+<br>
+
+<img src="https://buffaloroamtours.com/wp-content/uploads/2017/12/yellowstone-park-tours.jpg" alt="VB" border="0" style="width:100%; height:auto" class="center">
+
+<h2>All Park Events</h2>
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th> Park Name </th>
+            <th> Event Title </th>
+            <th> Start Date </th>
+            <th> End Date </th>
+            <th> Phone Number </th>
+            <th> Free Event </th>
+            <th> Comment </th>
+        </tr>
+    </thead>
+
+<tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.parkfullname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.datestart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dateend)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.contacttelephonenumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isfree)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.feeinfo)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<style>
+
+p2 {
+  font-size: 1.3vw;
+}
+
+</style>

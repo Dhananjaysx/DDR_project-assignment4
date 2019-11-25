@@ -1,0 +1,43 @@
+﻿@{  
+    ViewBag.Title = "JsonView";  
+}  
+  
+<div><b>Table Format Data Displaying Using Jquery</b><br /></div>  
+  
+<div>  
+    <table class="table table-bordered table-responsive table-hover" id="tblEmployee">  
+        <tr>  
+            <th>Employee Id </th>  
+            <th>First Name </th>  
+            <th>Last Name </th>  
+            <th>Email</th>  
+            <th>Salary</th>  
+            <th>Company</th>  
+            <th>Department</th>  
+        </tr>  
+  
+    </table>  
+</div>  
+<script src="~/scripts/jquery-1.10.2.js"></script>  
+<script type="text/javascript">  
+  
+    $(document).ready(function () {  
+        GetEmployeeData();  
+    });  
+    function GetEmployeeData() {  
+        $.get('/Home/EmployeeData', {}, function (data) {  
+            var tblEmployee = $("#tblEmployee");  
+            $.each(data, function (index, item) {  
+                var tr = $("<tr></tr>");  
+                tr.html(("<td>"+item.EmployeeId+"</td>")  
+                + " " + ("<td>" + item.FirstName + "</td>")  
+                + " " + ("<td>" + item.LastName + "</td>")  
+                + " " + ("<td>" + item.Email + "</td>")  
+                + " " + ("<td>" + item.Salary + "</td>")  
+                + " " + ("<td>" + item.Company + "</td>")  
+                + " " + ("<td>" + item.Dept + "</td>"));  
+                tblEmployee.append(tr);  
+            });  
+        });  
+    }
+    </script>
