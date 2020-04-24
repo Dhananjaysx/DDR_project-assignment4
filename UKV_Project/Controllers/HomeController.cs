@@ -4,39 +4,16 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using UKV_Project.Models;
+using DDRProject.Models;
 using Newtonsoft.Json;
 using System.Net.Http;
 
-namespace UKV_Project.Controllers
+namespace DDRProject.Controllers
 {
     public class HomeController : Controller
     {
-        /*
-        private List<Result> res;
 
-        public HomeController()
-        {
-            res = new List<Result>()
-        {
-            new Result()
-            { title ="a",name="Rakesh",state="Kalluri", agency="raki.kalluri@gmail.com", web_page="Nani.Kumar@gmail.com", telephone="Summit", fax="IT", email="BPO", seq_num=0 },
-            new Result()
-            { title ="a",name="Naresh",state="C", agency="Naresh.C@gmail.com", web_page="Nani.Kumar@gmail.com", telephone="IBM", fax="IT", email="BPO", seq_num=1 },
-            new Result()
-            { title ="a",name="Madhu",state="K", agency="Madhu.K@gmail.com", web_page="Nani.Kumar@gmail.com", telephone="HCl", fax="IT", email="BPO", seq_num=2 },
-            new Result()
-            { title ="a",name="Ali",state="MD", agency="Ali.MD@gmail.com", web_page="Nani.Kumar@gmail.com", telephone="Tech Mahindra", fax="BPO", email="BPO", seq_num=3 },
-            new Result()
-            { title ="a",name="Chithu",state="Raju", agency="Chithu.Raju@gmail.com", web_page="Nani.Kumar@gmail.com", telephone="Dell", fax="BPO", email="BPO", seq_num=4 },
-            new Result()
-            { title ="a",name="Nani",state="Kumar", agency="Nani.Kumar@gmail.com", web_page="Nani.Kumar@gmail.com", telephone="Infosys", fax="BPO", email="BPO", seq_num=5 },
-
-        };
-        }
-        */
-
-        string BASE_URL = "https://developer.nps.gov/api/v1/events";
+        string BASE_URL = "https://developer.nps.gov/api/v1/";
         HttpClient httpClient;
 
         public HomeController()
@@ -53,7 +30,7 @@ namespace UKV_Project.Controllers
         */
         public List<Datum> GetData()
         {
-            string IEXTrading_API_PATH = BASE_URL+ "?api_key=dCgbntSNVGwM7mzqC4hGhL6EGtp1pmYJDmhyuGnj";
+            string IEXTrading_API_PATH = BASE_URL + "events?api_key=dCgbntSNVGwM7mzqC4hGhL6EGtp1pmYJDmhyuGnj";
             string datumList = "";
             RootObject datums = null;
 
@@ -77,12 +54,39 @@ namespace UKV_Project.Controllers
             return datums.data;
         }
 
+        public List<Datum2> GetData2()
+        {
+            string IEXTrading_API_PATH = BASE_URL + "campgrounds?api_key=dCgbntSNVGwM7mzqC4hGhL6EGtp1pmYJDmhyuGnj";
+            string datum2List = "";
+            RootObject2 datums2 = null;
+
+            // Connect to the IEXTrading API and retrieve information
+            httpClient.BaseAddress = new Uri(IEXTrading_API_PATH);
+            HttpResponseMessage response = httpClient.GetAsync(IEXTrading_API_PATH).GetAwaiter().GetResult();
+
+            // Read the Json objects in the API response
+            if (response.IsSuccessStatusCode)
+            {
+                datum2List = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            }
+
+            // Parse the Json strings as C# objects
+            if (!datum2List.Equals(""))
+            {
+                datums2 = JsonConvert.DeserializeObject<RootObject2>(datum2List);
+                //datums = datums.GetRange(0, 50);
+            }
+
+            return datums2.data;
+        }
+
         public IActionResult Index()
         {
             // Get the data from the List using GetSymbols method
-            List<Datum> datums = GetData();
+            //List<Datum> datums = GetData();
             // Send the data to the Index view
-            return View(datums);
+            //return View(datums);
+            return View();
         }
 
         public IActionResult About()
@@ -90,14 +94,21 @@ namespace UKV_Project.Controllers
             return View();
         }
 
-        public IActionResult Contact()
+       public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
-
+           // List<Datum> datums = GetData();
+            //return View(datums);
+            return View();
+        }
+        
+        public IActionResult Visit()
+        {
+            // List<Datum2> datums2 = GetData2();
+            //return View(datums2);
             return View();
         }
 
-        public IActionResult Privacy()
+       /* public IActionResult Privacy()
         {
             return View();
         }
@@ -107,5 +118,9 @@ namespace UKV_Project.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        public IActionResult More()
+        {
+            return View();
+        }*/
     }
 }

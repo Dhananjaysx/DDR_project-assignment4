@@ -4,7 +4,7 @@ using System.Globalization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace UKV_Project.Models
+namespace DDRProject.Models
 {
     public class RootObject
     {

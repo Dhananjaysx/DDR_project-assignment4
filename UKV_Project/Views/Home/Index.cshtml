@@ -1,67 +1,31 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Bonds: Home </title>
+    <link rel="stylesheet" href="css/style.css">
 
-@model IEnumerable<UKV_Project.Models.Datum>
+</head>
+<body>
 
-<div class ="main">
-<h1>Park Events Project</h1>
-<p2>The application is supposed to display ongoing events in US parks.</p2>
-</div>
-<br>
+    <br>
+    <h1 align="center">Bond Program Spending Summary</h1>
+    <br>
 
-<img src="https://buffaloroamtours.com/wp-content/uploads/2017/12/yellowstone-park-tours.jpg" alt="VB" border="0" style="width:100%; height:auto" class="center">
+    <div class="bg-img"> 
+                   
+    </div>
+    
 
-<h2>All Park Events</h2>
-<hr />
-
-<table class="table">
-    <thead>
-        <tr>
-            <th> Park Name </th>
-            <th> Event Title </th>
-            <th> Start Date </th>
-            <th> End Date </th>
-            <th> Phone Number </th>
-            <th> Free Event </th>
-            <th> Comment </th>
-        </tr>
-    </thead>
-
-<tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.parkfullname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.datestart)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.dateend)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.contacttelephonenumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.isfree)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.feeinfo)
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-<style>
-
-p2 {
-  font-size: 1.3vw;
-}
-
-</style>
+    <div style="padding-left:20px; padding-right:20px">
+        <p>
+            <b>What is Bond Market :</b>
+            <br><br>
+            A bond is a fixed income instrument that represents a loan made by an investor to a borrower (typically corporate or governmental). A bond could be thought of as an I.O.U. between the lender and borrower that
+            includes the details of the loan and its payments. Bonds are used by companies, municipalities, states, and sovereign governments to finance projects and operations. Owners of bonds are debtholders, or
+            creditors, of the issuer. Bond details include the end date when the principal of the loan is due to be paid to the bond owner and usually includes the terms for variable or fixed interest payments made by the borrower.
+            <br>
+        </p>
+    </div>
+</body>
+</html>

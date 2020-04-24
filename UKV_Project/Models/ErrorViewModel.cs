@@ -1,6 +1,6 @@
 using System;
 
-namespace UKV_Project.Models
+namespace DDRProject.Models
 {
     public class ErrorViewModel
     {
